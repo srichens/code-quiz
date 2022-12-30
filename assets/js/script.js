@@ -19,15 +19,21 @@ function countDown() {
 
 startEl.addEventListener("click", countDown);
 
-/*let question = document.createElement(questionSentence);
-let answerOne = document.createElement(firstOption);
-let answerTwo = document.createElement(seconOption);
-let answerThree = document.createElement(thirdOption);*/
+var listEl = document.createElement("ol");
+var li1 = document.createElement("li");
+var li2 = document.createElement("li");
+var li3 = document.createElement("li");
+
 
 function startQuiz(){
     console.log("quiz has started");
-    //questionEl.textContent = "";
-    //question.textContent = "Is this the first question?"
-    //document.body.appendChild(question);
+    questionEl.textContent = "Is this the first question?";
+    questionEl.appendChild(listEl);
+    listEl.appendChild(li1);
+    listEl.appendChild(li2);
+    listEl.appendChild(li3);
+    li1.textContent = "This is the first answer";
+    li2.textContent = "This is the second";
+    li3.textContent = "This is the third";
     
 }
