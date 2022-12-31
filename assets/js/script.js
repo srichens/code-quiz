@@ -38,10 +38,14 @@ rwMess.textContent = "Correct!"*/
 function startQuiz(){
     console.log("quiz has started");
     questionEl.textContent = "Is this the first question?";
-    answersEl.setAttribute("style", "color:black");
-    button1El.setAttribute("style", "color:black; background-color:lightgrey; border:solid;");
-    button2El.setAttribute("style", "color:black; background-color:lightgrey; border:solid;");
-    button3El.setAttribute("style", "color:black; background-color:lightgrey; border:solid;");
+    //answersEl.style.color = "black";
+    //button1El.setAttribute("style", "color:black; background-color:lightgrey; border:solid;");
+    //button2El.setAttribute("style", "color:black; background-color:lightgrey; border:solid;");
+    //button3El.setAttribute("style", "color:black; background-color:lightgrey; border:solid;");
+    answersEl.style.visibility = "visible";
+    //button1El.style.visibility = "visible";
+    //button2El.setAttribute("style", "color:black; background-color:lightgrey; border:solid;");
+    //button3El.setAttribute("style", "color:black; background-color:lightgrey; border:solid;");
 
     button1El.textContent = "This is the first answer to the first question";
     button2El.textContent = "This is the second answer to the first question";
@@ -128,9 +132,9 @@ function thirdQuestion(){
     button2El.textContent = "This is the second answer to the third question";
     button3El.textContent = "This is the third answer to the third question";
 
-    button1El.addEventListener("click", incorrectMessage);
+    button1El.addEventListener("click", correctMessage);
     button2El.addEventListener("click", incorrectMessage);
-    button3El.addEventListener("click", correctMessage);
+    button3El.addEventListener("click", incorrectMessage);
 
     function correctMessage(){
         alert("Correct!"); scorePage();
