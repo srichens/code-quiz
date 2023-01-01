@@ -6,6 +6,10 @@ let questionEl = document.querySelector("#question-title");
 let answersEl = document.querySelector("#answers");
 let answers2El = document.querySelector("#answers2");
 let answers3El = document.querySelector("#answers3");
+let score1 = 0;
+let score2 = 0;
+let score3 = 0;
+let score = 0;
 
 
 function countDown() {
@@ -54,39 +58,24 @@ function startQuiz(){
     console.log(button2Name);
     console.log(button3Name);       
 
-    /*function message1(){
-        if (button1Name === "correct") {alert("Correct!")} 
-        else {alert("Incorrect!")}; 
+     
+    function message1(){
+        alert("Correct!"); score1 = 1;
          secondQuestion();
     }
 
     function message2(){
-        if (button2Name === "correct") {alert("Correct!")} 
-        else {alert("Incorrect!")}; 
-         secondQuestion();
+        alert("Incorrect!"); count = count - 5; score1 = 0;
+        secondQuestion();
     }
 
     function message3(){ 
-        if (button3Name === "correct") {alert("Correct!")} 
-        else {alert("Incorrect!")}; 
+        alert("Incorrect!"); count = count - 5; score1 = 0;
         secondQuestion();
-    }*/
-   
+    }
   
-   function message1(){
-        alert("Correct!"); 
-         secondQuestion();
-    }
 
-    function message2(){
-        alert("Incorrect!"); count = count - 5;
-        secondQuestion();
-    }
-
-    function message3(){ 
-        alert("Incorrect!"); count = count - 5;
-        secondQuestion();
-    }
+    
    
     countEl.textContent = count;
     if(count === 0) {
@@ -96,6 +85,7 @@ function startQuiz(){
 }
 
 function secondQuestion(){
+    console.log(score1);
     console.log("this is the second question");
     answersEl.style.visibility = "hidden";
     answers2El.style.visibility = "visible";
@@ -128,17 +118,17 @@ function secondQuestion(){
    
 
     function message21(){
-        alert("Incorrect!"); count = count - 10;
+        alert("Incorrect!"); count = count - 10; score2 = 0;
         thirdQuestion();
     }
 
     function message22(){
-        alert("Correct!"); 
+        alert("Correct!"); score2 = 1;
          thirdQuestion();
     }
 
     function message23(){
-       alert("Incorrect!"); count = count - 10;
+       alert("Incorrect!"); count = count - 10; score2 = 0;
         thirdQuestion();
     }   
    
@@ -152,6 +142,7 @@ function secondQuestion(){
 }
 
 function thirdQuestion(){
+    console.log(score2);
     console.log("this is the third question");
     answersEl.style.visibility = "hidden";
     answers2El.style.visibility = "hidden";
@@ -183,17 +174,17 @@ function thirdQuestion(){
     console.log(button33Name);  
        
     function message31(){
-        alert("Incorrect!"); count = count - 10;
+        alert("Incorrect!"); count = count - 10; score3 = 0;
         scorePage();
     }
 
     function message32(){
-       alert("Incorrect!"); count = count - 10;
+       alert("Incorrect!"); count = count - 10; score3 = 0;
         scorePage();
     }
 
     function message33(){
-      alert("Correct!"); 
+      alert("Correct!"); score3 = 1;
         scorePage();
     }   
    
@@ -206,11 +197,15 @@ function thirdQuestion(){
 }
 
 function scorePage(){
+    console.log(score3);
+    score = score1 + score2 + score3;
+    console.log(score);
     count = 1;
     startEl.style.visibility = "hidden";
     countEl.style.visibility = "hidden";
     secondsEl.style.visibility = "hidden";
     console.log("this is the score page");
     answers3El.style.visibility = "hidden";
-    questionEl.textContent = "You got __ questions correct";
+    if (score ===1) {questionEl.textContent = "You got " + score + " question correct"} 
+    else {questionEl.textContent = "You got " + score + " questions correct"} 
 }
