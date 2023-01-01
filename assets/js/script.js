@@ -51,8 +51,8 @@ function startQuiz(){
     console.log(button1Name);
     console.log(button2Name);
     console.log(button3Name);       
-  
-    function message1(){
+
+    /*function message1(){
         if (button1Name === "correct") {alert("Correct!")} 
         else {alert("Incorrect!")}; 
          secondQuestion();
@@ -64,9 +64,25 @@ function startQuiz(){
          secondQuestion();
     }
 
-    function message3(){
+    function message3(){ 
         if (button3Name === "correct") {alert("Correct!")} 
         else {alert("Incorrect!")}; 
+        secondQuestion();
+    }*/
+   
+  
+   function message1(){
+        alert("Correct!"); 
+         secondQuestion();
+    }
+
+    function message2(){
+        alert("Incorrect!"); count = count - 5;
+        secondQuestion();
+    }
+
+    function message3(){ 
+        alert("Incorrect!"); count = count - 5;
         secondQuestion();
     }
    
@@ -110,20 +126,17 @@ function secondQuestion(){
    
 
     function message21(){
-        if (button21Name === "correct") {alert("Correct!")} 
-        else {alert("Incorrect!")}; 
+        alert("Incorrect!"); count = count - 10;
         thirdQuestion();
     }
 
     function message22(){
-        if (button22Name === "correct") {alert("Correct!")} 
-        else {alert("Incorrect!")}; 
+        alert("Correct!"); 
          thirdQuestion();
     }
 
     function message23(){
-        if (button23Name === "correct") {alert("Correct!")} 
-        else {alert("Incorrect!")}; 
+       alert("Incorrect!"); count = count - 10;
         thirdQuestion();
     }   
    
@@ -168,20 +181,17 @@ function thirdQuestion(){
     console.log(button33Name);  
        
     function message31(){
-        if (button31Name === "correct") {alert("Correct!")} 
-        else {alert("Incorrect!")}; 
+        alert("Incorrect!"); count = count - 10;
         scorePage();
     }
 
     function message32(){
-        if (button32Name === "correct") {alert("Correct!")} 
-        else {alert("Incorrect!")}; 
+       alert("Incorrect!"); count = count - 10;
         scorePage();
     }
 
     function message33(){
-        if (button33Name === "correct") {alert("Correct!")} 
-        else {alert("Incorrect!")}; 
+      alert("Correct!"); 
         scorePage();
     }   
    
@@ -194,6 +204,7 @@ function thirdQuestion(){
 }
 
 function scorePage(){
+    count = 1;
     console.log("this is the score page");
     answers3El.style.visibility = "hidden";
     questionEl.textContent = "You got __ questions correct";
