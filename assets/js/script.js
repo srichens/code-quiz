@@ -207,5 +207,39 @@ function scorePage(){
     console.log("this is the score page");
     answers3El.style.visibility = "hidden";
     if (score ===1) {questionEl.textContent = "You got " + score + " question correct"} 
-    else {questionEl.textContent = "You got " + score + " questions correct"} 
+    else {questionEl.textContent = "You got " + score + " questions correct"}; 
+    
+    let form = document.createElement("form");
+    form.setAttribute("method", "post");
+    //form.setAttribute("action", "submit.php");
+
+    let nameInput = document.createElement("input");
+    nameInput.setAttribute("type", "text");
+    nameInput.setAttribute("name", "FullName");
+    nameInput.setAttribute("placeholder", "Full Name:");
+
+    form.appendChild(nameInput);
+
+    let submit = document.createElement("input");
+    submit.setAttribute("type", "submit");
+    submit.setAttribute("value", "Submit");
+    submit.setAttribute("id", "submit");
+
+    form.appendChild(submit);
+
+    questionEl.appendChild(form);
+
+    let submitEl = document.querySelector("#submit");
+
+    function showResponse(event) {
+        event.preventDefault();
+        console.log(event);
+        
+      }
+             
+      submitEl.addEventListener("click", showResponse);
+     
+
+    //console.log(submitEl);
+      
 }
