@@ -1,10 +1,12 @@
 let count = 60;
 let startEl = document.querySelector("#start-button");
 let countEl = document.querySelector("#timer-count");
+let secondsEl = document.querySelector("#timer-words");
 let questionEl = document.querySelector("#question-title");
 let answersEl = document.querySelector("#answers");
 let answers2El = document.querySelector("#answers2");
 let answers3El = document.querySelector("#answers3");
+
 
 function countDown() {
     count = 60; 
@@ -16,7 +18,7 @@ function countDown() {
             startQuiz();
         } 
         if(count === 0) {
-            clearInterval(myInterval); alert("Time is up!");
+            clearInterval(myInterval); alert("Quiz is done!");
         }
     }
 }
@@ -205,6 +207,9 @@ function thirdQuestion(){
 
 function scorePage(){
     count = 1;
+    startEl.style.visibility = "hidden";
+    countEl.style.visibility = "hidden";
+    secondsEl.style.visibility = "hidden";
     console.log("this is the score page");
     answers3El.style.visibility = "hidden";
     questionEl.textContent = "You got __ questions correct";
