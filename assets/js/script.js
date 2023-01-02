@@ -6,6 +6,7 @@ let questionEl = document.querySelector("#question-title");
 let answersEl = document.querySelector("#answers");
 let answers2El = document.querySelector("#answers2");
 let answers3El = document.querySelector("#answers3");
+let divEl = document.querySelector("div");
 let score1 = 0;
 let score2 = 0;
 let score3 = 0;
@@ -72,6 +73,8 @@ function secondQuestion(){
     console.log("this is the second question");
     answersEl.style.visibility = "hidden";
     answers2El.style.visibility = "visible";
+    divEl.style.flexDirection = "row";
+    divEl.style.justifyContent = "space-between";
     questionEl.textContent = "Is this the second question?";
 
     let button21El = document.querySelector("#button21");
@@ -112,6 +115,7 @@ function thirdQuestion(){
     answersEl.style.visibility = "hidden";
     answers2El.style.visibility = "hidden";
     answers3El.style.visibility = "visible";
+    divEl.style.flexDirection = "column-reverse";
     questionEl.textContent = "Is this the third question?";
 
     let button31El = document.querySelector("#button31");
