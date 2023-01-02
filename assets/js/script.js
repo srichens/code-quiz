@@ -217,6 +217,7 @@ function scorePage(){
     nameInput.setAttribute("type", "text");
     nameInput.setAttribute("name", "FullName");
     nameInput.setAttribute("placeholder", "Full Name:");
+    nameInput.setAttribute("id", "name");
 
     form.appendChild(nameInput);
 
@@ -230,16 +231,32 @@ function scorePage(){
     questionEl.appendChild(form);
 
     let submitEl = document.querySelector("#submit");
+    let submissionResponseEl = document.querySelector("#submission");
+
+    let nameAdd = document.querySelector("#name");
+    console.log(nameAdd);
+    console.log(nameAdd.value);
+
+    
+       
+     
 
     function showResponse(event) {
         event.preventDefault();
         console.log(event);
-        
-      }
-             
-      submitEl.addEventListener("click", showResponse);
-     
+        let response = "Thank you for your submission.";
+        submissionResponseEl.textContent = response;
+        console.log(nameAdd.value);
+        let name = nameAdd.value;
+        let totalScore = score;  
+        localStorage.setItem("userScore", totalScore);
+        localStorage.setItem("userName", name);
 
-    //console.log(submitEl);
+      }
+        
+      
+             
+    submitEl.addEventListener("click", showResponse);
+    
       
 }
