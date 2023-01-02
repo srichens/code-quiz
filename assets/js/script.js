@@ -23,7 +23,7 @@ function countDown() {
             startQuiz();
         } 
         if(count === 0) {
-            clearInterval(myInterval); alert("Quiz is done!");
+            clearInterval(myInterval); scorePage();
         }
     }
 }
@@ -39,9 +39,9 @@ function startQuiz(){
     let button2El = document.querySelector("#button2");
     let button3El = document.querySelector("#button3");
         
-    button1El.textContent = "This is the first answer to the first question";
-    button2El.textContent = "This is the second answer to the first question";
-    button3El.textContent = "This is the third answer to the first question";
+    button1El.textContent = "1. This is the first answer to the first question";
+    button2El.textContent = "2. This is the second answer to the first question";
+    button3El.textContent = "3. This is the third answer to the first question";
     
     button1El.addEventListener("click", message1);
     button2El.addEventListener("click", message2);
@@ -53,12 +53,12 @@ function startQuiz(){
     }
 
     function message2(){
-        alert("Incorrect!"); count = count - 5; score1 = 0;
+        alert("Incorrect!"); count = count - 10; score1 = 0;
         secondQuestion();
     }
 
     function message3(){ 
-        alert("Incorrect!"); count = count - 5; score1 = 0;
+        alert("Incorrect!"); count = count - 10; score1 = 0;
         secondQuestion();
     }
    
@@ -74,16 +74,16 @@ function secondQuestion(){
     answersEl.style.visibility = "hidden";
     answers2El.style.visibility = "visible";
     divEl.style.flexDirection = "row";
-    divEl.style.justifyContent = "space-between";
+    divEl.style.justifyContent = "space-evenly";
     questionEl.textContent = "Is this the second question?";
 
     let button21El = document.querySelector("#button21");
     let button22El = document.querySelector("#button22");
     let button23El = document.querySelector("#button23");
         
-    button21El.textContent = "This is the first answer to second question";
-    button22El.textContent = "This is the second answer to the second question";
-    button23El.textContent = "This is the third answer to the second question";
+    button21El.textContent = "1. This is the first answer to second question";
+    button22El.textContent = "2. This is the second answer to the second question";
+    button23El.textContent = "3. This is the third answer to the second question";
 
     button21El.addEventListener("click", message21);
     button22El.addEventListener("click", message22);
@@ -122,9 +122,9 @@ function thirdQuestion(){
     let button32El = document.querySelector("#button32");
     let button33El = document.querySelector("#button33");
     
-    button31El.textContent = "This is the first answer to the third question";
-    button32El.textContent = "This is the second answer to the third question";
-    button33El.textContent = "This is the third answer to the third question";
+    button31El.textContent = "1. This is the first answer to the third question";
+    button32El.textContent = "2. This is the second answer to the third question";
+    button33El.textContent = "3. This is the third answer to the third question";
 
     button31El.addEventListener("click", message31);
     button32El.addEventListener("click", message32);
@@ -154,12 +154,12 @@ function thirdQuestion(){
 function scorePage(){
     console.log("this is the score page");
     score = score1 + score2 + score3;
-    count = 1;
+    count = 2;
     startEl.style.visibility = "hidden";
     countEl.style.visibility = "hidden";
     secondsEl.style.visibility = "hidden";
     answers3El.style.visibility = "hidden";
-
+    
     if (score ===1) {questionEl.textContent = "You got " + score + " question correct"} 
     else {questionEl.textContent = "You got " + score + " questions correct"}; 
     
@@ -167,8 +167,8 @@ function scorePage(){
    
     let nameInput = document.createElement("input");
     nameInput.setAttribute("type", "text");
-    nameInput.setAttribute("name", "FullName");
-    nameInput.setAttribute("placeholder", "Full Name:");
+    nameInput.setAttribute("name", "Initials");
+    nameInput.setAttribute("placeholder", "Please enter your intials");
     nameInput.setAttribute("id", "name");
 
     form.appendChild(nameInput);
@@ -194,7 +194,7 @@ function scorePage(){
         event.preventDefault();
         let name = nameAdd.value;
         let totalScore = score;  
-        let response = "Thank you for your submission, " + name + ".";
+        let response = "Thank you. Your score has been recorded.";
         submissionResponseEl.textContent = response;
         localStorage.setItem("userScore", totalScore);
         localStorage.setItem("userName", name);
