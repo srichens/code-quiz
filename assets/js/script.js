@@ -7,6 +7,9 @@ let answersEl = document.querySelector("#answers");
 let answers2El = document.querySelector("#answers2");
 let answers3El = document.querySelector("#answers3");
 let divEl = document.querySelector("div");
+//let nameAdd = document.querySelector("#name");
+//let userName = 0;
+//let totalScore = 0;
 let score1 = 0;
 let score2 = 0;
 let score3 = 0;
@@ -184,6 +187,7 @@ function scorePage(){
 
     let submitEl = document.querySelector("#submit");
     let submissionResponseEl = document.querySelector("#submission");
+    let highScoreEl = document.querySelector("#high-score");
 
     let nameAdd = document.querySelector("#name");
        
@@ -192,11 +196,21 @@ function scorePage(){
 
     function showResponse(event) {
         event.preventDefault();
-        let name = nameAdd.value;
+        let userName = nameAdd.value;
         let totalScore = score;  
         let response = "Thank you. Your score has been recorded.";
+        let highScoreMessage = "The high score is " + totalScore + " by " + userName;
         submissionResponseEl.textContent = response;
+        highScoreEl.textContent = highScoreMessage;
+
         localStorage.setItem("userScore", totalScore);
-        localStorage.setItem("userName", name);
+        localStorage.setItem("userName", userName);
+              
+               
     }
 }
+
+
+
+
+
