@@ -7,6 +7,8 @@ let answersEl = document.querySelector("#answers");
 let answers2El = document.querySelector("#answers2");
 let answers3El = document.querySelector("#answers3");
 let divEl = document.querySelector("div");
+let hiScoreMess = document.querySelector("#high-score");
+let lastScoreMess = document.querySelector("#last-score");
 let score1 = 0;
 let score2 = 0;
 let score3 = 0;
@@ -158,7 +160,12 @@ function scorePage(){
     startEl.style.visibility = "hidden";
     countEl.style.visibility = "hidden";
     secondsEl.style.visibility = "hidden";
+    answersEl.style.visibility = "hidden";
+    answers2El.style.visibility = "hidden";
     answers3El.style.visibility = "hidden";
+    lastScoreMess.style.visibility = "visible";
+    
+    
     
     if (score ===1) {questionEl.textContent = "You got " + score + " question correct"} 
     else {questionEl.textContent = "You got " + score + " questions correct"}; 
@@ -185,30 +192,67 @@ function scorePage(){
     let submitEl = document.querySelector("#submit");
     let submissionResponseEl = document.querySelector("#submission");
     
-
     let nameAdd = document.querySelector("#name");
+    
+   
+    
+
+    function saveLastScore () {
+        
+        let savedScore = {
+            userScore: score,
+            userName: nameAdd.value
+        };
+        localStorage.setItem("savedScore", JSON.stringify(savedScore));
+    }
+    
+    renderLastScore();
+    let lastScore = JSON.parse(localStorage.getItem("savedScore"));
+    
+    console.log(lastScore.userScore);
+    let scoreNum = lastScore.userScore;
+    console.log(typeof scoreNum);
+    console.log(lastScore.userName);
+    let userLast = lastScore.userName;
+    console.log(userLast);
+
+    function renderLastScore() {
+        let lastScore = JSON.parse(localStorage.getItem("savedScore"));
+        if (lastScore !== null) {
+        document.getElementById("saved-name").innerHTML = lastScore.userName;
+        document.getElementById("saved-score").innerHTML = lastScore.userScore;
+        } else {
+        return;
+        }
+    }
        
     submitEl.addEventListener("click", showResponse); 
    
 
     function showResponse(event) {
         event.preventDefault();
+        lastScoreMess.style.visibility = "hidden";
         console.log(score);
-        console.log(nameAdd.value);
-        let lastUserName = nameAdd.value;
-        let lastTotalScore = score;  
+        let userName = nameAdd.value;
+        console.log(userName);
+        saveLastScore ();
+        if (scoreNum <= score) {hiScoreMess.textContent = userName + " has the high score with " + score} 
+        else if (scoreNum > score) {hiScoreMess.textContent = userLast + " has the high score with " + scoreNum};
+        renderLastScore();
+      
+        //let lastTotalScore = score;  
         let response = "Thank you. Your score has been recorded.";
         //let lastScore = localStorage.getItem("lastTotalScore");
        // let lastName = localStorage.getItem("lastUserName");
-        let highScoreEl = document.querySelector("#high-score");
-        let highScoreMessage = "The last score was " + lastTotalScore + " by " + lastUserName;
-        highScoreEl.textContent = highScoreMessage;
+       // let highScoreEl = document.querySelector("#high-score");
+       // let highScoreMessage = "The last score was " + lastTotalScore + " by " + lastUserName;
+       // highScoreEl.textContent = highScoreMessage;
        
         submissionResponseEl.textContent = response;
         
 
-        localStorage.setItem("lastTotalScore", lastTotalScore);
-        localStorage.setItem("lastUserName", lastUserName);          
+       // localStorage.setItem("lastTotalScore", lastTotalScore);
+       // localStorage.setItem("lastUserName", lastUserName);          
                
     }
 }

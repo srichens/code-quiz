@@ -26,6 +26,5 @@ div {
     padding-right: 3%;
 }
 
-/*li {
-    text-align: left;
-}*/
+#last-score {
+    visibility: hidden;}
