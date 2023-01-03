@@ -269,7 +269,9 @@ function scorePage(){
         let response = "Thank you. Your score has been recorded.";               
         submissionResponseEl.textContent = response;                         
     }
+    
 }
+
 
 //I did not include a button that clears the quiz and goes back to the beginning. 
 //I have so many functions and buttons and functions within functions, 
