@@ -36,6 +36,9 @@ function startQuiz(){
     console.log("quiz has started");
     questionEl.textContent = "Who invented Javascript and in what year?";
     answersEl.style.visibility = "visible";
+    startEl.style.visibility = "hidden";
+    countEl.style.color = "red";
+    
 
     let button1El = document.querySelector("#button1");
     let button2El = document.querySelector("#button2");
@@ -236,8 +239,8 @@ function scorePage(){
         let userName = nameAdd.value;
         console.log(userName);
         saveLastScore ();
-        if (scoreNum <= score) {hiScoreMess.textContent = userName + " has the high score with " + score} 
-        else if (scoreNum > score) {hiScoreMess.textContent = userLast + " has the high score with " + scoreNum};
+        if (scoreNum <= score) {hiScoreMess.textContent = "You have the high score with " + score} 
+        else if (scoreNum > score) {hiScoreMess.textContent = "The user " + userLast + " has the high score with " + scoreNum};
         renderLastScore();
       
         //let lastTotalScore = score;  
