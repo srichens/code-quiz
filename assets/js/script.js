@@ -241,7 +241,7 @@ function scorePage(){
         if (lastScore !== null) {
         document.getElementById("saved-name").innerHTML = lastScore.userName;
         document.getElementById("saved-score").innerHTML = lastScore.userScore;
-        } else {
+        } else { lastScoreMess.style.visibility = "hidden";
         return;
         }
     }
