@@ -25,6 +25,6 @@ Comparing user scores and showing the high score
 
 3. The solution was declaring a variable of the innerhtml of the last score outside of the renderLastScore function so that the last score became basically a hard static number outside of the saveScore function. And then the high score message was displayed in the submit button function after the saveScore function was called and before the renderLastScore function was called.
 
-
+[Link to deployed web page](https://srichens.github.io/code-quiz/)
 
 ![Screenshot 2023-01-03 at 2 55 56 PM](https://user-images.githubusercontent.com/117301473/210440308-52b00b5a-03d8-4ffa-a280-6908cf790ab9.png)
