@@ -47,6 +47,9 @@ button {
     font-weight: bold;
 }
 
+/* putting the three questions in a flexbox allowed me to move each to the top center
+at the beggining of each corresponding question function; I wasn't sure how else to 
+get them to all appear in the same place */
 div {
     width: 100%;
     height: 100%;
@@ -55,6 +58,8 @@ div {
     margin: auto;
 }
 
+/* starts all the answers hidden, so they are only visible when the corresponding 
+question function fires*/
 #answers, #answers2, #answers3 {
     visibility: hidden;
     list-style: none;
@@ -64,6 +69,8 @@ div {
     padding-right: 3%;
 }
 
+/* I was unable to easily get my second question to center with the smaller screen, 
+so I gave up*/
 @media screen and (max-width: 768px) {
     #answers, #answers3 {
       float: left; 

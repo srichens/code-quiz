@@ -1,4 +1,5 @@
-let count = 60;
+//I used the querySelector method to target different headings to change them for each question/funcion/page
+let count = 0;
 let startEl = document.querySelector("#start-button");
 let countEl = document.querySelector("#timer-count");
 let secondsEl = document.querySelector("#timer-words");
@@ -14,6 +15,7 @@ let score2 = 0;
 let score3 = 0;
 let score = 0;
 
+//the countDown function starts after the click from the eventListener 
 
 function countDown() {
     count = 60; 
@@ -21,9 +23,12 @@ function countDown() {
     function counting(){
         count--; 
         countEl.textContent = count;
+        //Goes to the first page/function after 1 second 
+        //Allows both the countdown to start and the first question function to be fired by clicking the start button
         if (countEl.textContent == 59){
             startQuiz();
         } 
+        //if time runs out and the count gets to zero, it calls the scorePage function to end the quiz 
         if(count === 0) {
             clearInterval(myInterval); scorePage();
         }
@@ -31,15 +36,19 @@ function countDown() {
 }
 
 startEl.addEventListener("click", countDown);
-    
+
+//I decided to make each quiz question a function, which created some interesting situations
+//In order to have each set of questions appear at the same place in the page, I used a flexbox and changed position at the start of each page function
+//The questions were all hidden at the start of the quiz, and then each page function made its set of questions visible
+
 function startQuiz(){
     console.log("quiz has started");
     questionEl.textContent = "Who invented Javascript and in what year?";
+    //Used .style instead of setAtribute, since we talked about in class how setAttribute isn't the best way to change css
     answersEl.style.visibility = "visible";
     startEl.style.visibility = "hidden";
     countEl.style.color = "red";
     
-
     let button1El = document.querySelector("#button1");
     let button2El = document.querySelector("#button2");
     let button3El = document.querySelector("#button3");
@@ -48,10 +57,14 @@ function startQuiz(){
     button2El.textContent = "2. Steve Jobs in 1984";
     button3El.textContent = "3. Elon Musk in 2053";
     
+    //a click eventlistener on each answer fires the message function that gives a correct or incorrect alert
+    
     button1El.addEventListener("click", message1);
     button2El.addEventListener("click", message2);
     button3El.addEventListener("click", message3);
   
+    //every message functions fires the next question function, so that you only have one change to answer
+    //the message functions also keep score; the score variables were declared universally to make a total score available at the end
     function message1(){
         alert("Correct!"); score1 = 1;
          secondQuestion();
@@ -78,6 +91,7 @@ function secondQuestion(){
     console.log("This is the second question");
     answersEl.style.visibility = "hidden";
     answers2El.style.visibility = "visible";
+    //targeting the div element allowed me to use flexbox to move the second set of questions to the top center
     divEl.style.flexDirection = "row";
     divEl.style.justifyContent = "space-evenly";
     questionEl.textContent = "What method attaches an event handler to a specified element?";
@@ -120,6 +134,7 @@ function thirdQuestion(){
     answersEl.style.visibility = "hidden";
     answers2El.style.visibility = "hidden";
     answers3El.style.visibility = "visible";
+    //column-reverse put the third question at the top center
     divEl.style.flexDirection = "column-reverse";
     questionEl.textContent = "What method cancels an event (if it is cancelable)?";
 
@@ -135,6 +150,7 @@ function thirdQuestion(){
     button32El.addEventListener("click", message32);
     button33El.addEventListener("click", message33);
          
+    //the messages in the last question call the scorepage function to end the quiz
     function message31(){
         alert("Incorrect!"); count = count - 10; score3 = 0;
         scorePage();
@@ -159,7 +175,6 @@ function thirdQuestion(){
 function scorePage(){
     console.log("this is the score page");
     score = score1 + score2 + score3;
-    count = 2;
     startEl.style.visibility = "hidden";
     countEl.style.visibility = "hidden";
     secondsEl.style.visibility = "hidden";
@@ -167,12 +182,12 @@ function scorePage(){
     answers2El.style.visibility = "hidden";
     answers3El.style.visibility = "hidden";
     lastScoreMess.style.visibility = "visible";
-    
-    
-    
+       
     if (score ===1) {questionEl.textContent = "You got " + score + " question correct"} 
     else {questionEl.textContent = "You got " + score + " questions correct"}; 
     
+    //I wanted to use the appendChild method learned this week, so I looked up how to add a form by appending
+    //This also allowed me to use setAttribute for something other than css styling
     let form = document.createElement("form");
    
     let nameInput = document.createElement("input");
@@ -191,16 +206,16 @@ function scorePage(){
     form.appendChild(submit);
 
     questionEl.appendChild(form);
-
+    
+    //the submit and submission elements will be used to produce a message after user initials are submitted
     let submitEl = document.querySelector("#submit");
     let submissionResponseEl = document.querySelector("#submission");
     
+    //targeting #name allows me to capture the previous user while preserving the current user
     let nameAdd = document.querySelector("#name");
     
-   
-    
-
-    function saveLastScore () {
+    //this function saves the intials and score of current user
+    function saveScore () {
         
         let savedScore = {
             userScore: score,
@@ -209,15 +224,17 @@ function scorePage(){
         localStorage.setItem("savedScore", JSON.stringify(savedScore));
     }
     
+    //this function retrieves the user and score and places it in the html 
+    //It is called now before the current user submits, so we can see the previous score
+
     renderLastScore();
+
+    //declaring lastScore outside of the renderLastScore and declaring the innerhtml as a variable, 
+    //allows us to store previous score and compare to current score
     let lastScore = JSON.parse(localStorage.getItem("savedScore"));
-    
-    console.log(lastScore.userScore);
     let scoreNum = lastScore.userScore;
-    console.log(typeof scoreNum);
-    console.log(lastScore.userName);
     let userLast = lastScore.userName;
-    console.log(userLast);
+   
 
     function renderLastScore() {
         let lastScore = JSON.parse(localStorage.getItem("savedScore"));
@@ -228,39 +245,35 @@ function scorePage(){
         return;
         }
     }
-       
-    submitEl.addEventListener("click", showResponse); 
-   
+     
+    //this is the action for the submit initials button
+    submitEl.addEventListener("click", showResponse);    
 
+    //I used the preventDefault so the submit button wouldn't try to send the textinput somewhere
     function showResponse(event) {
         event.preventDefault();
-        lastScoreMess.style.visibility = "hidden";
-        console.log(score);
-        let userName = nameAdd.value;
-        console.log(userName);
-        saveLastScore ();
-        if (scoreNum <= score) {hiScoreMess.textContent = "You have the high score with " + score} 
-        else if (scoreNum > score) {hiScoreMess.textContent = "The user " + userLast + " has the high score with " + scoreNum};
-        renderLastScore();
-      
-        //let lastTotalScore = score;  
-        let response = "Thank you. Your score has been recorded.";
-        //let lastScore = localStorage.getItem("lastTotalScore");
-       // let lastName = localStorage.getItem("lastUserName");
-       // let highScoreEl = document.querySelector("#high-score");
-       // let highScoreMessage = "The last score was " + lastTotalScore + " by " + lastUserName;
-       // highScoreEl.textContent = highScoreMessage;
-       
-        submissionResponseEl.textContent = response;
         
+        lastScoreMess.style.visibility = "hidden";
+        
+        //calling saveScore saves current user info
+        saveScore ();
 
-       // localStorage.setItem("lastTotalScore", lastTotalScore);
-       // localStorage.setItem("lastUserName", lastUserName);          
-               
+        //I couldn't figure out how to save more scores than the previous one, so I settled for only
+        //comparing the current and previous
+        //Also, the current user becomes the high score if they tie, because that was easier
+        if (scoreNum <= score) {hiScoreMess.textContent = "You have the high score with " + score} 
+        else if (scoreNum > score) {hiScoreMess.textContent = "The last user " + userLast + " has the high score with " + scoreNum};
+        
+        //calling renderLastScore turns current user info into last user for the next person who takes the quiz
+        renderLastScore();              
+        let response = "Thank you. Your score has been recorded.";               
+        submissionResponseEl.textContent = response;                         
     }
 }
 
-
+//I did not include a button that clears the quiz and goes back to the beginning. 
+//I have so many functions and buttons and functions within functions, 
+//I was afraid to add any more and break it all.
 
 
 
