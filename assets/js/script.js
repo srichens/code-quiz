@@ -14,6 +14,8 @@ let score1 = 0;
 let score2 = 0;
 let score3 = 0;
 let score = 0;
+let scoreNum = 0;
+let userLast = 0;
 
 //the countDown function starts after the click from the eventListener 
 
@@ -216,7 +218,6 @@ function scorePage(){
     
     //this function saves the intials and score of current user
     function saveScore () {
-        
         let savedScore = {
             userScore: score,
             userName: nameAdd.value
@@ -228,21 +229,29 @@ function scorePage(){
     //It is called now before the current user submits, so we can see the previous score
 
     renderLastScore();
+    
+    saveLastScore();
 
-    //declaring lastScore outside of the renderLastScore and declaring the innerhtml as a variable, 
+    //saveLastScore get the last score and stores the propoerties in variables
     //allows us to store previous score and compare to current score
-    let lastScore = JSON.parse(localStorage.getItem("savedScore"));
-    let scoreNum = lastScore.userScore;
-    let userLast = lastScore.userName;
-   
 
+    function saveLastScore() {
+        let lastScore = JSON.parse(localStorage.getItem("savedScore"));
+        if (lastScore !== null) {
+        scoreNum = lastScore.userScore;
+        userLast = lastScore.userName;            
+        } else {  lastScoreMess.style.visibility = "hidden";
+            return;     
+        };
+    }
+       
     function renderLastScore() {
         let lastScore = JSON.parse(localStorage.getItem("savedScore"));
         if (lastScore !== null) {
         document.getElementById("saved-name").innerHTML = lastScore.userName;
         document.getElementById("saved-score").innerHTML = lastScore.userScore;
-        } else { lastScoreMess.style.visibility = "hidden";
-        return;
+        } else { 
+            return;
         }
     }
      

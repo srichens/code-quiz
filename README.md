@@ -23,7 +23,7 @@ Comparing user scores and showing the high score
 
 2. I ended up following the example in the week’s class for saving and rendering the last score (call the renderLastScore function before the submit button’s function, and then also call it again within the submit button’s function after the saveScore function). That was great for showing the previous score and the current score before the current score was submitted, but then I lost it after the current score was submitted and couldn’t state the high score.
 
-3. The solution was declaring a variable of the innerhtml of the last score outside of the renderLastScore function so that the last score became basically a hard static number outside of the saveScore function. And then the high score message was displayed in the submit button function after the saveScore function was called and before the renderLastScore function was called.
+3. The solution was creating a saveLastScore function that saved the properties of rendered last score as variables that could be compared to the current user name and score. That was called right after the renderLastScore was first called. And then the high score message was displayed in the submit button function after the saveScore function was called and before the renderLastScore function was called.
 
 [Link to deployed web page](https://srichens.github.io/code-quiz/)
 
